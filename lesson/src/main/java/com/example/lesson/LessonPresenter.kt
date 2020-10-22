@@ -9,13 +9,13 @@ import java.util.*
 
 class LessonPresenter {
 
-    companion object{
+    companion object {
         private const val LESSON_PATH = "lessons"
     }
 
     private var activity: LessonActivity? = null
 
-   constructor(activity: LessonActivity?) {
+    constructor(activity: LessonActivity?) {
         this.activity = activity
     }
 
@@ -37,12 +37,9 @@ class LessonPresenter {
     }
 
     fun showPlayback() {
-        val playbackLessons: MutableList<Lesson> = ArrayList()
-        for (lesson in lessons) {
-            if (lesson.getState() === Lesson.State.PLAYBACK) {
-                playbackLessons.add(lesson)
-            }
+        val filter = lessons.filter {
+            it.state == Lesson.State.PLAYBACK
         }
-        activity!!.showResult(playbackLessons)
+        activity!!.showResult(filter)
     }
 }
